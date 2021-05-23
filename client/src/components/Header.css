@@ -1,15 +1,48 @@
-#header {
+#header-container {
   display: flex;
   justify-content: space-between;
-  background-color: red;
   height: 50px;
   align-items: center;
+  background: #F4F1EA;
 }
 
 #title {
   padding-left: 15px;
+  font-size: 30px;
 }
 
 #user-options {
   padding-right: 15px;
+  font-size: 20px;
+}
+
+#login {
+  border: thin solid black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#login:hover {
+  background-color: black;
+  color: white;
+}
+
+#header-left {
+  display: flex;
+}
+
+#header-tabs {
+  display: flex;
+  font-size: 20px;
+  align-items: center;
+  padding-left: 55px;
+}
+
+.header-tab {
+  padding-right: 20px;
+}
+
+.header-tab:hover {
+  font-weight: 600;
+  cursor:pointer;
 }
