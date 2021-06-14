@@ -17,26 +17,37 @@
   font-size: 20px;
 }
 
-#login {
+.google-logo {
+  height: 20px;
+  width: 20px;
+}
+
+.btn {
   border-radius: 4px;
   background-color: #2B333D;
   border: none;
   padding: 10px;
   cursor: pointer;
   color: white;
-  width: 75px;
   text-align: center;
   transition: all 0.5s;
 }
 
-#login span {
+#login-content {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-#login span:after {
+.btn span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -45,16 +56,16 @@
   transition: 0.5s;
 }
 
-#login:hover span {
+.btn:hover span {
   padding-right: 25px;
 }
 
-#login:hover span:after {
+.btn:hover span:after {
   opacity: 1;
   right: 0;
 }
 
-#login a {
+.btn a {
   color: white;
 }
 

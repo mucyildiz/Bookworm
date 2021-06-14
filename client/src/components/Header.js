@@ -22,7 +22,16 @@ function Header() {
       </div>
       <div id='header-right'>
         <div id='user-options'>
-          <div id='login'><a href='/auth/google'><span>Login</span></a></div>
+          <div className='btn'>
+            <a href='/auth/google'>
+              <div id='login-content'>
+                <img className='google-logo' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' alt='' />
+                <span>
+                Login with Google
+                </span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
