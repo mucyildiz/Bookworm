@@ -22,7 +22,7 @@ function Header() {
       </div>
       <div id='header-right'>
         <div id='user-options'>
-          <div id='login'><a href='/auth/google'>Login</a></div>
+          <div id='login'><a href='/auth/google'><span>Login</span></a></div>
         </div>
       </div>
     </div>
