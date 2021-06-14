@@ -1,14 +1,15 @@
 #header-container {
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  height: 75px;
   align-items: center;
   background: #F4F1EA;
 }
 
+
 #title {
   padding-left: 15px;
-  font-size: 30px;
+  font-size: 35px;
 }
 
 #user-options {
@@ -17,13 +18,43 @@
 }
 
 #login {
-  border: thin solid black;
-  padding: 5px;
+  border-radius: 4px;
+  background-color: #2B333D;
+  border: none;
+  padding: 10px;
   cursor: pointer;
+  color: white;
+  width: 75px;
+  text-align: center;
+  transition: all 0.5s;
 }
 
-#login:hover {
-  background-color: black;
+#login span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#login span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#login:hover span {
+  padding-right: 25px;
+}
+
+#login:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#login a {
   color: white;
 }
 
@@ -43,6 +74,10 @@
 }
 
 .header-tab:hover {
-  font-weight: 600;
-  cursor:pointer;
+  text-shadow: 0 0 .9px #333, 0 0 .9px #333, 0 0 .9px #333; 
+  cursor: pointer;
+}
+
+a {
+  color: black;
 }
