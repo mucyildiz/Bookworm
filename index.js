@@ -5,10 +5,12 @@ const passport = require('passport');
 require('./models/User');
 require('./services/passport');
 
+const app = express();
+
 const mongoURI = keys.mongoURI;
 mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const app = express();
+
 
 app.use(passport.initialize());
 app.use(passport.session());
