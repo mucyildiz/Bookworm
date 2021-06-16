@@ -1,5 +1,5 @@
-const UserCtrl = require('../controllers/library-ctrl');
+const LibraryCtrl = require('../controllers/library-ctrl');
 
 module.exports = app => {
-  app.put('/api/addbook', UserCtrl.addBook)
+  app.put('/api/addbook', LibraryCtrl.addBook)
 }
