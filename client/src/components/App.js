@@ -33,7 +33,7 @@ const App = () => {
           <Route exact path="/" render={() => (
             <Home name={userName} />
           )} />
-          <Route exact path="my-books" render={() => (
+          <Route exact path="/my-books" render={() => (
             <Library apiKey={googleAPIKey} />
           )} />
           <Route exact path='/recommendations' component={Recommendations} />
