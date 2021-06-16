@@ -1,7 +1,7 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
 
-function Home(props) {
+const Home = (props) => {
   const renderHome = () => {
     if(props.name) {
       return (

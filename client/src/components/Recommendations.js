@@ -1,5 +1,6 @@
 import './Recommendations.css';
-function Recommendations() {
+
+const Recommendations = () => {
   return (
     <div id='container'>
       <div>Recommendations</div>

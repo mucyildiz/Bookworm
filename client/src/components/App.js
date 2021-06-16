@@ -7,17 +7,22 @@ import Recommendations from './Recommendations';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function App() {
+const App = () => {
   const [userName, setUserName] = useState('');
+  const [googleAPIKey, setGoogleAPIKey] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get('/api/getuser');
       const userInfo = await response.data;
       setUserName(userInfo.firstName);
+      const googleAPIResponse = await axios.get('/api/getGoogleAPIKey');
+      const googleAPIKeyData = await googleAPIResponse.data;
+      setGoogleAPIKey(googleAPIKeyData);
     };
     fetchData();
-  }, [])
+  }, []);
+
 
   return (
     <div id='app-container'>
@@ -28,7 +33,9 @@ function App() {
           <Route exact path="/" render={() => (
             <Home name={userName} />
           )} />
-          <Route exact path="/my-books" component={Library} />
+          <Route exact path="my-books" render={() => (
+            <Library apiKey={googleAPIKey} />
+          )} />
           <Route exact path='/recommendations' component={Recommendations} />
         </div>
       </BrowserRouter>
