@@ -4,16 +4,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Home() {
-  const [user, setUser] = useState({});
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get('/api/getuser');
       const userInfo = await response.data;
-      setUser({
-        firstName: userInfo.firstName,
-        id: userInfo._id
-      });
+      setUserName(userInfo.firstName);
     };
     fetchData();
   }, [])
@@ -21,7 +18,7 @@ function Home() {
   return (
     <div id='home-container'>
       <div id='greeting'>
-        <div>Welcome {user.firstName}!</div>
+        <div>Welcome {userName}!</div>
         <div>You have x books in your library.</div>
       </div>
       <div id='options'>
