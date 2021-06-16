@@ -46,6 +46,16 @@
   color: black;
 }
 
+#guy-sitting-img {
+  width: 700px;
+  height: 400px;
+}
+
+#logged-out-msg {
+  text-align: center;
+  width: 800px;
+}
+
 a {
   text-decoration: none;
 }
