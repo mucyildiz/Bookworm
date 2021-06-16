@@ -16,14 +16,4 @@ module.exports = app => {
         failureRedirect: process.env.NODE_ENV === 'production' ? "/" : "http://localhost:3000/"
     }),
   );
-
-  app.get('/api/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-  });
-  
-
-  app.get('/api/getuser', (req, res) => {
-    res.json(req.user);
-  });
 }
