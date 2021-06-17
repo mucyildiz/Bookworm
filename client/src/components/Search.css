@@ -1,0 +1,24 @@
+#searchbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#book-search {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  font-size: 25px;
+  margin-bottom: 10px;
+  background: transparent;
+  font-weight: 300;
+}
+
+#book-search:focus {
+  outline: none;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
