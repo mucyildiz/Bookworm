@@ -1,0 +1,10 @@
+.book-result-container {
+  display: flex;
+  align-items: center;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+
+}
