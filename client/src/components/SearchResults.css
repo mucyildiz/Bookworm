@@ -1,0 +1,13 @@
+#search-results-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-results-header {
+  font-size: 35px;
+  margin: 25px auto 0;
+}
+
+.search-result-books {
+  margin: 25px 50px 50px;
+}
