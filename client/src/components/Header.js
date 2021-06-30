@@ -1,4 +1,5 @@
 import './Header.css';
+import Search from './Search';
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {
@@ -9,14 +10,17 @@ const Header = (props) => {
         <div id='title'>Bibliophili</div>
         </Link>
         {props.isAuthed && 
-        <div id='header-tabs'>
-          <Link to='/my-books'>
-            <div className='header-tab'>My Books</div>
-          </Link>
-          <Link to='/recommendations'>
-            <div className='header-tab'>Get Recommendations</div>
-          </Link>
-        </div>
+        <>
+          <div id='header-tabs'>
+            <Link to='/my-books'>
+              <div className='header-tab'>My Books</div>
+            </Link>
+            <Link to='/recommendations'>
+              <div className='header-tab'>Get Recommendations</div>
+            </Link>
+            <Search id='search-bar' googleAPIKey={props.apiKey} />
+          </div>
+        </>
         }
       </div>
       <div id='header-right'>
