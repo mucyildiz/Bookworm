@@ -29,7 +29,7 @@ const App = () => {
       <BrowserRouter>
         <div>
           {/* if we have userName, we are authed */}
-          <Header isAuthed={userName}/>
+          <Header apiKey={googleAPIKey} isAuthed={userName}/>
           <Route exact path="/" render={() => (
             <Home name={userName} />
           )} />
