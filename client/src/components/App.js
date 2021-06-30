@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import Library from './Library';
+import SearchResults from './SearchResults';
 import Recommendations from './Recommendations';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -37,6 +38,9 @@ const App = () => {
             <Library apiKey={googleAPIKey} />
           )} />
           <Route exact path='/recommendations' component={Recommendations} />
+          <Route path='/searchresults/' render={() => (
+            <SearchResults apiKey={googleAPIKey} />
+          )} />
         </div>
       </BrowserRouter>
     </div>
