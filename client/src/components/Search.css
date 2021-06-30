@@ -1,5 +1,17 @@
 #searchbar {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+#search-icon {
+  width: 25px;
+  height: 25px;
+}
+
+#searchbox {
+  display: flex;
   align-items: center;
   gap: 10px;
 }
@@ -10,7 +22,6 @@
   border-left-style: hidden;
   border-bottom-style: groove;
   font-size: 25px;
-  margin-bottom: 10px;
   background: transparent;
   font-weight: 300;
 }
@@ -21,4 +32,31 @@
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom-style: groove;
+}
+
+#results {
+  position: absolute;
+  max-height: 400px;
+  overflow: scroll;
+  overflow-x: hidden;
+  width: 313.6px;
+  top: 52px;
+  z-index: 22;
+}
+
+
+#results::-webkit-scrollbar {
+  width: 10px;
+}
+
+#results::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+#results::-webkit-scrollbar-thumb {
+  background-color: #2B333D;
+}
+
+#book-search {
+  font-size: 20px;
 }
