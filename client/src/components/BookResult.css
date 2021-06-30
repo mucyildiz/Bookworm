@@ -39,7 +39,7 @@
   height: 75px;
 }
 
-.add-book-button {
+.book-button {
   display:inline-block;
   padding: .9em 1.2em;
   border:0.1em solid black;
@@ -53,9 +53,32 @@
   transition: all 0.2s;
 }
 
-.add-book-button:hover {
+.book-button:hover {
   color:white;
   background-color: #2B333D;
   cursor: pointer;
-  
+}
+
+.library-book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 50px 15px 50px;
+}
+
+.library-book-img {
+  height: 200px;
+  width: 150px;
+}
+
+.library-book-title {
+  font-weight: 700;
+  text-align: center;
+  max-width: 150px;
+  min-height: 30px;
+}
+.library-book-author {
+  max-width: 150px;
+  text-align: center;
 }
