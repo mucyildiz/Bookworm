@@ -5,3 +5,14 @@
   justify-content: center;
   padding-top: 20px;
 }
+
+.library-books {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.library-header {
+  font-size: 35px;
+  padding-bottom: 20px;
+}
