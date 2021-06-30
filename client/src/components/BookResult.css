@@ -6,6 +6,12 @@
   text-overflow: ellipsis;
 }
 
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .book-result-container {
   list-style: none;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 1);
@@ -17,6 +23,7 @@
   font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
   background-color: white;
   overflow: auto;
+  justify-content: space-between;
 }
 
 .book-result-container:hover {
@@ -30,4 +37,25 @@
 .book-img {
   width: 50px;
   height: 75px;
+}
+
+.add-book-button {
+  display:inline-block;
+  padding: .9em 1.2em;
+  border:0.1em solid black;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+.add-book-button:hover {
+  color:white;
+  background-color: #2B333D;
+  cursor: pointer;
+  
 }
