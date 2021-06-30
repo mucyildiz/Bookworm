@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import BookResult from './BookResult';
 import { pick } from 'lodash';
+import { useHistory } from 'react-router-dom';
 import './Search.css';
 
 const Search = (props) => {
@@ -37,7 +38,6 @@ const Search = (props) => {
     const booksNoDuplicates = filterDuplicates(books);
     setIsLoading(false);
     setBookResults(booksNoDuplicates);
-    console.log('data', data);
   }
 
   const handleInput = async e => {
@@ -45,19 +45,25 @@ const Search = (props) => {
     await getResults(searchQuery)
   }
 
+  const history = useHistory();
+  const onSubmit = e => {
+    history.push(`/searchresults/q=${searchQuery}`);
+    setSearchQuery('');
+    e.preventDefault();
+  }
+
   return (
-    <div id='searchbar' action='/' method='GET'>
-      <div id='searchbox'>
+    <div id='searchbar'>
+      <form id='searchbox' action='/' method='get' onSubmit={onSubmit}>
         <input
         value={searchQuery}
         onInput={handleInput}
         type="text"
         id="book-search"
         placeholder="Search books"
-        name="search" 
         />
-        <img id='search-icon' src='/images/searchicon.svg' alt='search' />
-      </div>
+        <input type='image' id='search-icon' src='/images/searchicon.svg' alt='search' />
+      </form>
         <div id='results'>
         {searchQuery && bookResults &&
           <ul>
