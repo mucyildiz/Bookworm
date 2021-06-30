@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import BookResult from './BookResult';
 import { pick } from 'lodash';
@@ -9,6 +9,23 @@ const Search = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [bookResults, setBookResults] = useState([])
+  const debouncedSearchTerm = useDebounce(searchQuery, 500);
+
+  useEffect(() => {
+    const getData = async () => {
+      if(debouncedSearchTerm) {
+        setIsLoading(true);
+        const results = await getResults(debouncedSearchTerm);
+        setIsLoading(false);
+        setBookResults(results);
+      }
+      else{
+        setBookResults([]);
+        setIsLoading(false);
+      }
+  }
+  getData();
+  }, [debouncedSearchTerm] )
 
   const filterDuplicates = arr => {
     let noDuplicateArr = [];
@@ -29,20 +46,17 @@ const Search = (props) => {
   }
 
   const getResults = async (query) => {
-    setIsLoading(true);
     const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${props.googleAPIKey}`)
     const data = await res.data;
     let books = data.items.map(book => (
       pick(book, ['id', 'volumeInfo'])
     ));
     const booksNoDuplicates = filterDuplicates(books);
-    setIsLoading(false);
-    setBookResults(booksNoDuplicates);
+    return booksNoDuplicates;
   }
 
   const handleInput = async e => {
     setSearchQuery(e.target.value);
-    await getResults(searchQuery)
   }
 
   const history = useHistory();
@@ -62,10 +76,11 @@ const Search = (props) => {
         id="book-search"
         placeholder="Search books"
         />
-        <input type='image' id='search-icon' src='/images/searchicon.svg' alt='search' />
+        {isLoading ? <div class="lds-dual-ring"></div> :
+        <input type='image' id='search-icon' src='/images/searchicon.svg' alt='search' /> }
       </form>
         <div id='results'>
-        {searchQuery && bookResults &&
+        {debouncedSearchTerm && bookResults &&
           <ul>
             {bookResults.map(book => (
               <li key={book.id}>
@@ -86,4 +101,19 @@ const Search = (props) => {
   )
 }
 
+const useDebounce = (query, delay) => {
+  const [debouncedValue, setDebouncedValue ] = useState(query);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(query);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [query, delay]);
+
+  return debouncedValue;
+}
 export default Search;
