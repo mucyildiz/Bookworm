@@ -57,6 +57,7 @@ const SearchResults = props => {
             imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
             author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
             isSearchResult={true}
+            isInLibrary={false}
             />
           </li>
         ))
