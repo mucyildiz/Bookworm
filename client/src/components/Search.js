@@ -12,7 +12,14 @@ const Search = (props) => {
   const filterDuplicates = arr => {
     let noDuplicateArr = [];
     for(let item of arr) {
-      let index = noDuplicateArr.findIndex(obj => obj.id === item.id);
+      let index = noDuplicateArr.findIndex(obj => obj.id === item.id || 
+        // different publishers etc. will publish same classic books so we might have two of same book with different id's
+        // so we check for equal titles and equal authors and remove duplicates in such scenarios
+        // but some records don't have authors so we must first check to see if authors property exists
+        (obj.volumeInfo.title === item.volumeInfo.title && (obj.volumeInfo.authors && item.volumeInfo.authors) ? 
+        obj.volumeInfo.authors[0] === item.volumeInfo.authors[0] : false) || 
+        // data with long title tends to be journals and academic papers or government stuff, not really books
+        item.volumeInfo.title.length > 70);
       if(index === -1) {
         noDuplicateArr.push(item);
       }
@@ -30,37 +37,30 @@ const Search = (props) => {
     const booksNoDuplicates = filterDuplicates(books);
     setIsLoading(false);
     setBookResults(booksNoDuplicates);
-    console.log(bookResults);
+    console.log('data', data);
   }
 
   const handleInput = async e => {
     setSearchQuery(e.target.value);
-    
-    if(!searchQuery) {
-      setBookResults([]);
-    }
-    else {
-      await getResults(searchQuery)
-    }
-
+    await getResults(searchQuery)
   }
 
   return (
-    <>
-      <form id='searchbar' action='/' method='GET'>
-          <input
-          value={searchQuery}
-          onInput={handleInput}
-          type="text"
-          id="book-search"
-          placeholder="Search books"
-          name="search" 
-          />
-          <img src='/images/searchicon.svg' alt='search'/>
-      </form>
-      <div id='results'>
-        {bookResults.length > 0 &&
-        <ul>
+    <div id='searchbar' action='/' method='GET'>
+      <div id='searchbox'>
+        <input
+        value={searchQuery}
+        onInput={handleInput}
+        type="text"
+        id="book-search"
+        placeholder="Search books"
+        name="search" 
+        />
+        <img id='search-icon' src='/images/searchicon.svg' alt='search' />
+      </div>
+        <div id='results'>
+        {searchQuery && bookResults &&
+          <ul>
             {bookResults.map(book => (
               <li key={book.id}>
                 <BookResult 
@@ -68,14 +68,15 @@ const Search = (props) => {
                 title={book.volumeInfo.title}
                 subtitle={book.volumeInfo.subtitle}
                 imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
-                author={book.volumeInfo.authors ? book.volumeInfo.authors.join('') : ''}
+                author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
                 />
               </li>
-            ))}
-        </ul>
+            ))
+          }
+          </ul>
         }
+        </div>
     </div>
-    </>
   )
 }
 
