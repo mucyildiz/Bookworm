@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import BookResult from './BookResult';
 import { pick } from 'lodash';
@@ -10,6 +10,24 @@ const Search = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [bookResults, setBookResults] = useState([])
   const debouncedSearchTerm = useDebounce(searchQuery, 500);
+  const wrapperRef = useRef(null);
+
+  const useOutsideAlerter = (ref) => {
+    useEffect(() => {
+      const handleClickOutside = e => {
+        if(ref.current && !ref.current.contains(e.target)) {
+          setBookResults([]);
+        }
+      }
+  
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      } 
+    }, [ref])
+  }
+
+  useOutsideAlerter(wrapperRef);
 
   useEffect(() => {
     const getData = async () => {
@@ -67,7 +85,7 @@ const Search = (props) => {
   }
 
   return (
-    <div id='searchbar'>
+    <div ref={wrapperRef} id='searchbar'>
       <form id='searchbox' action='/' method='get' onSubmit={onSubmit}>
         <input
         value={searchQuery}
@@ -76,11 +94,11 @@ const Search = (props) => {
         id="book-search"
         placeholder="Search books"
         />
-        {isLoading ? <div class="lds-dual-ring"></div> :
+        {isLoading ? <div className="lds-dual-ring"></div> :
         <input type='image' id='search-icon' src='/images/searchicon.svg' alt='search' /> }
       </form>
         <div id='results'>
-        {debouncedSearchTerm && bookResults &&
+        {!isLoading &&
           <ul>
             {bookResults.map(book => (
               <li key={book.id}>
@@ -116,4 +134,5 @@ const useDebounce = (query, delay) => {
 
   return debouncedValue;
 }
+
 export default Search;
