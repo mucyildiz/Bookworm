@@ -6,6 +6,12 @@
   background: #F4F1EA;
 }
 
+#header-right {
+  display: flex;
+  gap: 75px;
+  align-items: center;
+}
+
 
 #title {
   padding-left: 15px;
