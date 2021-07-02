@@ -18,12 +18,12 @@ const Header = (props) => {
             <Link to='/recommendations'>
               <div className='header-tab'>Get Recommendations</div>
             </Link>
-            <Search id='search-bar' googleAPIKey={props.apiKey} />
           </div>
         </>
         }
       </div>
       <div id='header-right'>
+      <Search id='search-bar' googleAPIKey={props.apiKey} />
         <div id='user-options'>
           <div className='btn'>
             {props.isAuthed ? 
