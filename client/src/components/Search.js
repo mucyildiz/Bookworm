@@ -66,6 +66,9 @@ const Search = (props) => {
   const getResults = async (query) => {
     const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${props.googleAPIKey}`)
     const data = await res.data;
+    if(data.items === undefined) {
+      return [];
+    }
     let books = data.items.map(book => (
       pick(book, ['id', 'volumeInfo'])
     ));
@@ -79,6 +82,10 @@ const Search = (props) => {
 
   const history = useHistory();
   const onSubmit = e => {
+    if(!searchQuery) {
+      e.preventDefault();
+      return;
+    }
     history.push(`/searchresults/q=${searchQuery}`);
     setSearchQuery('');
     e.preventDefault();
