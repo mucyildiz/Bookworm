@@ -22,6 +22,7 @@ const BookResult = props => {
     await axios.put('/api/removebook', bookInfo);
   }
 
+
   if(props.isInLibrary) {
     return (
       <>
@@ -30,7 +31,7 @@ const BookResult = props => {
           <img className='library-book-img' src={props.imgUrl} alt='' />
           <div className='library-book-title'>{props.title}</div>
           <div className='library-book-author'>{props.author}</div>
-          <div onClick={removeBookFromLibrary} className='book-button'>Remove Book</div>
+          <div onClick={removeBookFromLibrary} className='library-book-button book-button'>Remove Book</div>
         </div>
       }
       </>
