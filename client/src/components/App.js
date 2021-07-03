@@ -4,7 +4,6 @@ import Header from './Header';
 import Home from './Home';
 import Library from './Library';
 import SearchResults from './SearchResults';
-import Recommendations from './Recommendations';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -37,7 +36,6 @@ const App = () => {
           <Route exact path="/my-books" render={() => (
             <Library name={userName} apiKey={googleAPIKey} />
           )} />
-          <Route exact path='/recommendations' component={Recommendations} />
           <Route path='/searchresults/' render={() => (
             <SearchResults apiKey={googleAPIKey} />
           )} />
