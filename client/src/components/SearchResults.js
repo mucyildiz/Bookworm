@@ -6,15 +6,29 @@ import BookResult from './BookResult';
 
 const SearchResults = props => {
   //NOTE: assumes only one query parameter in url
-  const query = decodeURIComponent(window.location.pathname.split('q=')[1]);
+  let query = decodeURIComponent(window.location.pathname.split('q=')[1]);
+  
   const key = props.apiKey;
 
   const [bookResults, setBookResults] = useState([])
+  const [invalidQuery, setInvalidQuery] = useState(false);
+  const [noQuery, setNoQuery] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setNoQuery(false);
+      if(!window.location.pathname.includes("q=")) {
+        setNoQuery(true);
+        return;
+      }
+      setInvalidQuery(false);
       const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${key}`)
       const data = await res.data;
+      if(data.items === undefined) {
+        setInvalidQuery(true);
+        setBookResults([]);
+        return;
+      }
       let books = data.items.map(book => (
         pick(book, ['id', 'volumeInfo'])
       ));
@@ -42,28 +56,56 @@ const SearchResults = props => {
     return noDuplicateArr;
   }
 
-  return (
-    <div id='search-results-container'>
-      <div className="search-results-header">
-        <h1>Search Results for '{query}'</h1>
+  const renderLogic = () => {
+    if(invalidQuery) {
+      return (
+        <div id='search-results-container'>
+          <div className='search-results-header'>
+            <h1>No results found for '{query}.'</h1>
+          </div>
+        </div>
+      )
+    }
+    // no results and no invalid query means that we just came in from home screen
+    if(noQuery) {
+      return (
+        <div id='search-results-container'>
+          <div className='search-results-header'>
+            <h1>Use the search bar above to search for books!</h1>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div id='search-results-container'>
+        <div className='search-results-header'>
+          <h1>Search results for '{query}'</h1>
+        </div>
+        <ul className='search-result-books'>
+          {bookResults.map(book => (
+            <li key={book.id}>
+              <BookResult 
+              bookId={book.id}
+              title={book.volumeInfo.title}
+              subtitle={book.volumeInfo.subtitle}
+              imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
+              author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
+              isSearchResult={true}
+              isInLibrary={false}
+              />
+            </li>
+          ))
+          }
+        </ul>
       </div>
-      <ul className='search-result-books'>
-        {bookResults.map(book => (
-          <li key={book.id}>
-            <BookResult 
-            bookId={book.id}
-            title={book.volumeInfo.title}
-            subtitle={book.volumeInfo.subtitle}
-            imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
-            author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
-            isSearchResult={true}
-            isInLibrary={false}
-            />
-          </li>
-        ))
-      }
-      </ul>
-    </div>
+    )
+  }
+
+  return (
+    <>
+    {renderLogic()}
+    </>
   )
 }
 
