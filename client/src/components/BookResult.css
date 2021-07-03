@@ -44,7 +44,7 @@
   padding: .9em 1.2em;
   border:0.1em solid black;
   margin:0 0.3em 0.3em 0;
-  border-radius:0.12em;
+  border-radius: 5px;
   box-sizing: border-box;
   text-decoration:none;
   font-family:'Roboto',sans-serif;
@@ -57,6 +57,10 @@
   color:white;
   background-color: #2B333D;
   cursor: pointer;
+}
+
+.library-book-button:hover {
+  background-color: maroon;
 }
 
 .library-book {
