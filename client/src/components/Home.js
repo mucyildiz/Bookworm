@@ -8,7 +8,6 @@ const Home = (props) => {
         <div id='home-container'>
           <div id='greeting'>
             <div>Welcome {props.name}!</div>
-            <div>You have x books in your library.</div>
           </div>
           <div id='options'>
             <Link to="/my-books">
@@ -17,7 +16,7 @@ const Home = (props) => {
                 <div className='option-text'>Go to library</div>
               </div>
             </Link>
-            <Link to='/recommendations'>
+            <Link to='/searchresults/'>
               <div className='option'>
                 <img className='option-img' src='/images/bookreader1.svg' alt='find books' />
                 <div className='option-text'>Find Books</div>
