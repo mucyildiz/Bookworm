@@ -15,9 +15,6 @@ const Header = (props) => {
             <Link to='/my-books'>
               <div className='header-tab'>My Books</div>
             </Link>
-            <Link to='/recommendations'>
-              <div className='header-tab'>Get Recommendations</div>
-            </Link>
           </div>
         </>
         }
