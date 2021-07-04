@@ -1,0 +1,23 @@
+.library-book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 50px 15px 50px;
+}
+
+.library-book-img {
+  height: 200px;
+  width: 150px;
+}
+
+.library-book-title {
+  font-weight: 700;
+  text-align: center;
+  max-width: 150px;
+  min-height: 30px;
+}
+.library-book-author {
+  max-width: 150px;
+  text-align: center;
+}
