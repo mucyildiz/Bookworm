@@ -2,7 +2,6 @@ import './SearchResults.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { pick } from 'lodash';
-import { Link } from 'react-router-dom';
 import BookResult from './BookResult';
 
 const SearchResults = props => {
