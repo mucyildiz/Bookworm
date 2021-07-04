@@ -1,7 +1,7 @@
 import './Library.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import BookResult from './BookResult';
+import LibraryBook from './LibraryBook';
 
 const Library = (props) => {
   const [library, setLibrary] = useState([]);
@@ -25,13 +25,12 @@ const Library = (props) => {
       <ul className='library-books'>
         {library.map(book => (
           <li key={book.bookId}>
-            <BookResult 
+            <LibraryBook
             bookId={book.bookId}
             title={book.title}
             imgUrl={book.imgUrl ? book.imgUrl : '/images/placeholderbook.svg'}
             author={book.author ? book.author : ''}
             description={book.description}
-            isInLibrary={true}
             />
           </li>
         ))
