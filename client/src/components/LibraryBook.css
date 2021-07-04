@@ -11,6 +11,10 @@
   width: 150px;
 }
 
+.library-book a:hover {
+  text-decoration: underline;
+}
+
 .library-book-title {
   font-weight: 700;
   text-align: center;
