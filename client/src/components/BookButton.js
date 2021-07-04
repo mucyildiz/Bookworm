@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const BookButton = props => {
-  // alreadyInLibrary is check from SearchResults.js and isInLibrary is check from Library.js
+  // alreadyInLibrary is check from SearchResults.js/BookInfo.js and isInLibrary is check from Library.js
   // former checks to see what button we should display for search results
   // latter checks to see if we are in library in which case isInLibrary should always be true
   const [ isInLibrary, setIsInLibrary ] = useState(props.alreadyInLibrary || props.isInLibrary);
