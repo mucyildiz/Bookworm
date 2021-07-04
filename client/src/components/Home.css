@@ -59,3 +59,14 @@
 a {
   text-decoration: none;
 }
+
+@media screen and (max-width: 770px) { 
+    #options {
+      gap: 50px;
+      flex-direction: column;
+    }
+    #logged-out-msg{
+      max-width: 350px;
+      text-align: center;
+    }
+}
