@@ -9,7 +9,7 @@ const Library = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get('/api/getlibrary');
-      const userLibrary = res.data;
+      const userLibrary = await res.data;
       setLibrary(userLibrary);
     }
     fetchData();
