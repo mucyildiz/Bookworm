@@ -2,6 +2,7 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 
 const Home = (props) => {
+
   const renderHome = () => {
     if(props.name) {
       return (
@@ -26,6 +27,7 @@ const Home = (props) => {
         </div>
       )
     }
+    
     return (
       <div id='home-container'>
         <h2 id='logged-out-msg'>To log in and start finding new books, simply press the button at the top right and sign in with your Google account!</h2>
