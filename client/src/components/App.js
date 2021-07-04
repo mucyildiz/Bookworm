@@ -4,6 +4,7 @@ import Header from './Header';
 import Home from './Home';
 import Library from './Library';
 import SearchResults from './SearchResults';
+import BookInfo from './BookInfo';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -39,6 +40,7 @@ const App = () => {
           <Route path='/searchresults/' render={() => (
             <SearchResults apiKey={googleAPIKey} />
           )} />
+          <Route path='/book/' component={BookInfo} />
         </div>
       </BrowserRouter>
     </div>
