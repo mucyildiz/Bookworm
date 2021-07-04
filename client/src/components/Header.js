@@ -20,7 +20,7 @@ const Header = (props) => {
         }
       </div>
       <div id='header-right'>
-      <Search id='search-bar' googleAPIKey={props.apiKey} />
+      {props.isAuthed && <Search id='search-bar' googleAPIKey={props.apiKey} />}
         <div id='user-options'>
           <div className='btn'>
             {props.isAuthed ? 
