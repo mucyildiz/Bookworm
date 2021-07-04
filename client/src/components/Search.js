@@ -85,6 +85,9 @@ const Search = (props) => {
 
   const history = useHistory();
   const onSubmit = e => {
+    if(props.toggleMenu) {
+      props.toggleMenu();
+    }
     if(!searchQuery) {
       e.preventDefault();
       return;
@@ -119,6 +122,7 @@ const Search = (props) => {
                 imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
                 author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
                 inSearchBar={true}
+                toggleMenu = {props.toggleMenu}
                 />
               </li>
             ))
