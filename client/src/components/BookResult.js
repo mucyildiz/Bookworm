@@ -13,8 +13,14 @@ const BookResult = props => {
     }
   }
 
+  const handleClick = () => {
+    if (props.toggleMenu) {
+      props.toggleMenu();
+    }
+  }
+
   return (
-    <div className='book-result-container'>
+    <div onClick={handleClick} className='book-result-container'>
         <Link to={{pathname: `/book/id=${props.bookId}`}} >
           <div className='left'>
             <img className='book-img' src={props.imgUrl} alt='' />
@@ -25,7 +31,6 @@ const BookResult = props => {
           </div>
         </Link>
         {!props.inSearchBar && <BookButton alreadyInLibrary={props.alreadyInLibrary} body={body}/> }
-
     </div>
   )
 }
