@@ -46,6 +46,9 @@ const Search = (props) => {
   }, [debouncedSearchTerm] )
 
   const filterDuplicates = arr => {
+    if(arr === undefined) {
+      return [];
+    }
     let noDuplicateArr = [];
     for(let item of arr) {
       let index = noDuplicateArr.findIndex(obj => obj.id === item.id || 
