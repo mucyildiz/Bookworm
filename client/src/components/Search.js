@@ -118,6 +118,7 @@ const Search = (props) => {
                 subtitle={book.volumeInfo.subtitle}
                 imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
                 author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
+                inSearchBar={true}
                 />
               </li>
             ))
