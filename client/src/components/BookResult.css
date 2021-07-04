@@ -6,6 +6,18 @@
   text-overflow: ellipsis;
 }
 
+.book-result-container a {
+  color: #002D62;
+}
+
+.book-result-container a:hover {
+  text-decoration: underline;
+}
+
+.book-result-container a:visited {
+  color: purple;
+}
+
 .left {
   display: flex;
   align-items: center;
