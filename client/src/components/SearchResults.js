@@ -14,13 +14,18 @@ const SearchResults = props => {
   const [invalidQuery, setInvalidQuery] = useState(false);
   const [noQuery, setNoQuery] = useState(false);
 
+  const inLibrary = false;
+
   useEffect(() => {
+
     const fetchData = async () => {
       setNoQuery(false);
+
       if(!window.location.pathname.includes("q=")) {
         setNoQuery(true);
         return;
       }
+
       setInvalidQuery(false);
       const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${key}`)
       const data = await res.data;
@@ -29,10 +34,29 @@ const SearchResults = props => {
         setBookResults([]);
         return;
       }
+
       let books = data.items.map(book => (
         pick(book, ['id', 'volumeInfo'])
       ));
+
       const booksNoDuplicates = filterDuplicates(books);
+      
+      const libraryRes = await axios.get('/api/getlibrary');
+      const libraryData = await libraryRes.data;
+
+      // go thru book ids from search result
+      // if library book id matches search result book id then that book is already in library, otherwise not
+      const searchResultBookIDs = booksNoDuplicates.map(book => book.id);
+      const libraryBookIDs = libraryData.map(book => book.bookId);
+      for(let i = 0; i < searchResultBookIDs.length; i++) {
+        if(libraryBookIDs.includes(searchResultBookIDs[i])) {
+          booksNoDuplicates[i].alreadyInLibrary = true;
+        }
+        else {
+          booksNoDuplicates[i].alreadyInLibrary = false;
+        }
+      }
+
       setBookResults(booksNoDuplicates);
     }
     fetchData();
@@ -91,8 +115,7 @@ const SearchResults = props => {
               subtitle={book.volumeInfo.subtitle}
               imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
               author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
-              isSearchResult={true}
-              isInLibrary={false}
+              alreadyInLibrary={book.alreadyInLibrary}
               />
             </li>
           ))
