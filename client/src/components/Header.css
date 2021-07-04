@@ -8,7 +8,7 @@
 
 #header-right {
   display: flex;
-  gap: 75px;
+  gap: 50px;
   align-items: center;
 }
 
@@ -77,6 +77,7 @@
 
 #header-left {
   display: flex;
+  align-items: center;
 }
 
 #header-tabs {
@@ -97,4 +98,77 @@
 
 a {
   color: black;
+}
+
+.visible-on-small-screen {
+  display: none;
+}
+
+@media screen and (max-width: 770px) {
+  .not-visible-on-small-screen {
+    display: none;
+  }
+  .visible-on-small-screen {
+    display: block;
+  }
+  .menu-pic {
+    position: absolute;
+    right: 25px;
+    top: 25.5px;
+  }
+  #header-left {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .menu-container {
+    position:absolute;
+    top: 75px;
+    right: 0;
+    z-index: 500;
+    background: #2B333D;
+    color: white;
+    width: 50vw;
+  }
+  .menu-container input {
+    color: white;
+  }
+
+  .menu-container input::placeholder {
+    color: white;
+  }
+  #header-tabs {
+    padding: 0;
+    margin: 0;
+  }
+
+  .header-tab {
+    color: white;
+    padding: 0;
+    font-size: 30px;
+  }
+
+  .btn {
+    background-color: white;
+  }
+
+  #login-content {
+    color: #2B333D;
+  }
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 10px;
+    font-size: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .menu-container {
+    width: 100vw;
+  }
 }
