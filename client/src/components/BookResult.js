@@ -1,5 +1,6 @@
 import './BookResult.css';
 import BookButton from './BookButton';
+import { Link } from 'react-router-dom';
 
 const BookResult = props => {
   const body = {
@@ -14,14 +15,16 @@ const BookResult = props => {
 
   return (
     <div className='book-result-container'>
-        <div className='left'>
-          <img className='book-img' src={props.imgUrl} alt='' />
-          <div className='book-info'>
-            <div className='title'>{props.title}</div>
-            <div>{props.author}</div>
+        <Link to={{pathname: `/book/id=${props.bookId}`}} >
+          <div className='left'>
+            <img className='book-img' src={props.imgUrl} alt='' />
+            <div className='book-info'>
+              <div className='title'>{props.title}</div>
+              <div>{props.author}</div>
+            </div>
           </div>
-        </div>
-        <BookButton alreadyInLibrary={props.alreadyInLibrary} body={body}/>
+        </Link>
+        {!props.inSearchBar && <BookButton alreadyInLibrary={props.alreadyInLibrary} body={body}/> }
 
     </div>
   )

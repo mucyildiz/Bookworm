@@ -2,6 +2,7 @@ import './SearchResults.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { pick } from 'lodash';
+import { Link } from 'react-router-dom';
 import BookResult from './BookResult';
 
 const SearchResults = props => {
@@ -13,8 +14,6 @@ const SearchResults = props => {
   const [bookResults, setBookResults] = useState([])
   const [invalidQuery, setInvalidQuery] = useState(false);
   const [noQuery, setNoQuery] = useState(false);
-
-  const inLibrary = false;
 
   useEffect(() => {
 
@@ -109,14 +108,14 @@ const SearchResults = props => {
         <ul className='search-result-books'>
           {bookResults.map(book => (
             <li key={book.id}>
-              <BookResult 
-              bookId={book.id}
-              title={book.volumeInfo.title}
-              subtitle={book.volumeInfo.subtitle}
-              imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
-              author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
-              alreadyInLibrary={book.alreadyInLibrary}
-              />
+                <BookResult 
+                bookId={book.id}
+                title={book.volumeInfo.title}
+                subtitle={book.volumeInfo.subtitle}
+                imgUrl={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : '/images/placeholderbook.svg'}
+                author={book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : ''}
+                alreadyInLibrary={book.alreadyInLibrary}
+                />
             </li>
           ))
           }
