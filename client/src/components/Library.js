@@ -35,7 +35,7 @@ const Library = (props) => {
           </li>
         ))
       }
-      </ul> : <div className='no-books-message'>You don't have any books in your library. Find some by searching for them or getting recommendations!</div> }
+      </ul> : <div className='no-books-message'>You don't have any books in your library. Find some by searching for them!</div> }
     </div>
   )
 }
